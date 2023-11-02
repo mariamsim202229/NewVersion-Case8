@@ -5,4 +5,10 @@ function handleGetAll(req, res) {
     res.json(users.getAll());    
 }
 
-export {handleGetAll}
+function handleLogin(req, res) {
+    const name = req.body.name;
+    const password = req.body.password;
+    res.json(users.login(name, password));
+}
+
+export {handleGetAll, handleLogin}

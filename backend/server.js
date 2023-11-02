@@ -1,9 +1,14 @@
 import express from 'express';
-// import User from './models/user-model.js';
+import cors from 'cors';
+
 import userRouter from './routes/user-router.js';
 
 const PORT = 4444;
 const app = express();
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("Hello World");
