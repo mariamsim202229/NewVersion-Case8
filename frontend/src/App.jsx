@@ -1,15 +1,24 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+
 import { TopNavigation } from "./components/TopNavigation";
 import { Login } from './pages/Login';
+import { Authenticated } from './components/Authenticated';
+import { Api } from './components/Api';
 
 function App() {
+
+    const [user, setUser] = useState({});
+    const [token, setToken] = useState("");
+    
     return (
         <>
             <TopNavigation />
-            <h1>Hello World</h1>
+            <Authenticated user={user} />
+            <Api token={token} />
             <Routes>
                 <Route path='/' element=''></Route>
-                <Route path='/login' element={<Login />}></Route>
+                <Route path='/login' element={<Login setUser={setUser} setToken={setToken} />}></Route>
             </Routes>
         </>
     )

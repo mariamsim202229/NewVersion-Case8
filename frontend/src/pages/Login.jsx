@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export function Login() {
+export function Login({setUser, setToken}) {
 
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -23,6 +23,8 @@ export function Login() {
         .then(response => response.json())
         .then((data) => {
             console.log("data", data);
+            setUser(data.user);
+            setToken(data.token);
         })
     }
 

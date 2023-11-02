@@ -1,3 +1,6 @@
+import jwt from 'jsonwebtoken';
+import { secretKey, authenticateWebToken } from '../utils/authenticate.js';
+
 import Users from '../models/user-model.js';
 const users = new Users();
 
@@ -8,7 +11,14 @@ function handleGetAll(req, res) {
 function handleLogin(req, res) {
     const name = req.body.name;
     const password = req.body.password;
-    res.json(users.login(name, password));
+    const user = users.login(name, password);
+
+    if (user.hasOwnProperty("id")) {
+        const token = jwt.sign({ user }, secretKey, { expiresIn: '1h' });
+        res.json({user: user, token: token});
+    } else {
+        res.json({})
+    }
 }
 
 export {handleGetAll, handleLogin}

@@ -697,3 +697,229 @@ class User {
     }
 }
 ```
+
+## Backend - Frontend: authenticate using jsonwebtoken
+
+A JSON Web Token (JWT) is an open standard for securely transmitting server-client information. The token will be created server-side using a secret key. When a user has successfully logged in, this token is transfered to client. In a browser requests to get data from server this token can be used to authenticate requests.
+
+Navigate to *backend* and install *jsonwebtoken*.
+
+`cd backend`
+
+`npm install jsonwebtoken`
+
+Create a folder named *utils* and inside this folder a file named *authenticate.js*
+
+In *authenticate.js* create variable named *secretKey* and set a string as value.
+A function named authenticateWebToken will be used as a middleware. The function requires a *Authorization* header. Any request without this header will end in a json response "Access denied".
+
+If Authorization header exists the *jsonwebtoken* buill-in method *verify* checks if token matches. If no match the response will end in a json response "Invalid token". This can occur if token has expired.
+
+If token is verified the argument *next* will pass functionality to some function handler.
+
+*authenticate.js*
+
+```js
+import jwt from 'jsonwebtoken';
+
+const secretKey = "secret-key-randomized-string";
+
+function authenticateWebToken(req, res, next) {
+    const token = req.header('Authorization');
+    if (!token) return res.status(401).json({result: 'Access denied'});
+
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) return res.status(403).json({result: 'Invalid token'});
+        req.user = user;
+        next();
+    });
+}
+
+export { secretKey, authenticateWebToken }
+```
+
+Edit *backend/routes/user-router.js*, import function from *authenticate.js*.
+
+Since authentication is a middleware, the function can be coded in the router to get all users:
+
+Use backend url to test http://localhost:4444/users:
+
+`userRouter.get('/users', handleGetAll);`
+
+`userRouter.get('/users', authenticateWebToken, handleGetAll);`
+
+
+*backend/routes/user-router.js*
+
+```js
+import { Router } from 'express';
+const userRouter = Router();
+
+import { handleGetAll, handleLogin } from '../controllers/user-controller.js';
+import { authenticateWebToken } from '../utils/authenticate.js';
+
+userRouter.get('/users', authenticateWebToken, handleGetAll);
+userRouter.post('/user/login', handleLogin);
+
+export default userRouter;
+```
+
+When a user successfully has logged in a *token* will be sent to the browser.
+
+The current function *handleLogin* in *backend/controllers/user-controller.js*:
+
+```js
+function handleLogin(req, res) {
+    const name = req.body.name;
+    const password = req.body.password;
+    res.json(users.login(name, password));
+}
+```
+
+Edit this function to first check if user credentials match before json response.
+If credentials match create a token and pass this to the client.
+
+```js
+function handleLogin(req, res) {
+    const name = req.body.name;
+    const password = req.body.password;
+    const user = users.login(name, password);
+
+    if (user.hasOwnProperty("id")) {
+        const token = jwt.sign({ user }, secretKey, { expiresIn: '1h' });
+        res.json({ser: user, token: token});
+    } else {
+        res.json({})
+    }
+}
+```
+
+Since this function now returns an object with properties *user* and *token* edit the async fetch function *frontend/src/pages/Authenticate.jsx*.
+
+Change *setUser(data)* to *setUser(data.user)*
+
+```js
+    const asynqRequest = (endpoint, options) => {
+        fetch(endpoint, options)
+        .then(response => response.json())
+        .then((data) => {
+            console.log("data", data);
+            setUser(data.user);
+        })
+    }
+```
+
+Handle token from server using *useState*. Add this state in *App.jsx* and pass set function to component *Login.jsx*. Since a token is a string, default string is empty: *const [token, setToken] = useState("");* 
+
+
+*App.jsx*
+
+```js
+function App() {
+
+    const [user, setUser] = useState({});
+    const [token, setToken] = useState("");
+    
+    return (
+        <>
+            <TopNavigation />
+            <Authenticated user={user} />
+            <Routes>
+                <Route path='/' element=''></Route>
+                <Route path='/login' element={<Login setUser={setUser} setToken={setToken} />}></Route>
+            </Routes>
+        </>
+    )
+}
+```
+
+*Login.jsx*
+
+```js
+export function Login({setUser, setToken}) {
+
+    // ...
+        const asynqRequest = (endpoint, options) => {
+        fetch(endpoint, options)
+        .then(response => response.json())
+        .then((data) => {
+            console.log("data", data);
+            setUser(data.user);
+            setToken(data.token);
+        })
+    }
+
+    // ...
+}
+```
+
+
+Now the client can send a request to server in order to get a response from something the server needs authentication.
+
+Create frontend component *Api.jsx*
+
+*Api.jsx*
+
+```js
+import { useState } from 'react';
+
+export function Api({ token }) {
+
+    const [data, setData] = useState("");
+
+    const handleRequest = (e) => {
+        e.preventDefault();
+        const endpoint = "http://localhost:4444/users";
+
+        const option = {
+            method: "GET",
+            mode: "cors",
+            headers: { "Authorization": token, "Content-Type": "application/json" },
+        }
+
+        asynqRequest(endpoint, option);
+    }
+
+    const asynqRequest = (endpoint, option) => {
+        fetch(endpoint, option)
+        .then(response => response.json())
+        .then((data) => {
+            console.log("data", data);
+            setData(data.result);
+        });
+    }
+
+    return (
+        <>
+            <h3>API request</h3>
+            <form action="/api/resource" method="get" onSubmit={handleRequest}>
+                <button type="submit">Make API request</button>
+            </form>
+        </>
+    )
+}
+```
+
+Add component to *App.jsx*
+
+```js
+function App() {
+
+    const [user, setUser] = useState({});
+    const [token, setToken] = useState("");
+    
+    return (
+        <>
+            <TopNavigation />
+            <Authenticated user={user} />
+            <Api token={token} />
+            <Routes>
+                <Route path='/' element=''></Route>
+                <Route path='/login' element={<Login setUser={setUser} setToken={setToken} />}></Route>
+            </Routes>
+        </>
+    )
+}
+```
+
+Hit the button and check server response when logged in, and not logged in...!
