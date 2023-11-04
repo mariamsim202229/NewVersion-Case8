@@ -922,4 +922,24 @@ function App() {
 }
 ```
 
-Hit the button and check server response when logged in, and not logged in...!
+Hit the button and check server response when logged in, and not logged in.
+
+Finally change asynq request check since returned object now has property *user* and *token*.
+
+A user exists if *data.user* has a user property - like ´id´. 
+
+```js
+    const asynqRequest = (endpoint, options) => {
+        fetch(endpoint, options)
+        .then(response => response.json())
+        .then((data) => {
+            console.log("data", data);
+            if (data.user.hasOwnProperty("id")) {
+                setUser(data.user);
+                setToken(data.token);    
+            }
+        })
+    }
+```
+
+---

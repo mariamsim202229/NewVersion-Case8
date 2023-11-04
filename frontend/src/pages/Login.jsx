@@ -23,8 +23,10 @@ export function Login({setUser, setToken}) {
         .then(response => response.json())
         .then((data) => {
             console.log("data", data);
-            setUser(data.user);
-            setToken(data.token);
+            if (data.user.hasOwnProperty("id")) {
+                setUser(data.user);
+                setToken(data.token);    
+            }
         })
     }
 
