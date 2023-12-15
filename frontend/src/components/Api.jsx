@@ -6,7 +6,7 @@ export function Api({ token }) {
 
     const handleRequest = (e) => {
         e.preventDefault();
-        const endpoint = "http://localhost:4444/users";
+        const endpoint = "http://localhost:4000";
 
         const option = {
             method: "GET",

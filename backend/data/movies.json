@@ -1,0 +1,426 @@
+{
+    "cinema": {
+        "name": "Välkommen till BioPalatset",
+        "description": "Välkommen till vår biosalong! Idag vill vi ta er med på en spännande resa in i vår biosalong, en plats där underhållning, gemenskap och magi möts. Vår biosalong är mer än bara en plats där du ser på film, det är en destination där du kan koppla av, känna spänning och skapa minnen.Vi är stolta över att välkomna er till vår biosalong och ser fram emot att dela fantastiska filmögonblick med er. Vi hoppas att ni kommer att uppskatta vår omsorgsfullt utformade miljö, högkvalitativa teknik och hjärtliga service. Så kom, sätt dig till rätta och låt oss tillsammans skapa minnen som varar livet ut i vårt tempel för film och underhållning.",
+    "movies": [
+      {
+        "movieId": 0,
+        "title": "Titanic",
+        "duration": "200 minuter",
+        "image": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/titanic-double-poster-andrea-gatti.jpg",
+        "description": "Titanic är en episk romantisk dramafilm från 1997 regisserad av James Cameron, som utforskar den tragiska kärlekshistorien mellan Jack och Rose ombord på det osänkbara fartyget RMS Titanic.",
+        "shows": [
+          {
+            "showId": 1,
+            "date": "2023-09-21",
+            "time": "12:00",
+            "room": "Rum 1",
+            "seats": [
+              {
+                "seatNumber": "A1",
+                "booked": false
+              },
+              {
+                "seatNumber": "A2",
+                "booked": true
+              },
+              {
+                "seatNumber": "A3",
+                "booked": false
+              },
+              {
+                "seatNumber": "A4",
+                "booked": false
+              },
+              {
+                "seatNumber": "A5",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 2,
+            "time": "17:00",
+            "room": "Rum 2",
+            "seats": [
+              {
+                "seatNumber": "B1",
+                "booked": false
+              },
+              {
+                "seatNumber": "B2",
+                "booked": true
+              }
+            ]
+          },
+          {
+            "showId": 3,
+            "time": "19:00",
+            "room": "Rum 3",
+            "seats": [
+              {
+                "seatNumber": "C1",
+                "booked": false
+              },
+              {
+                "seatNumber": "C2",
+                "booked": true
+              },
+              {
+                "seatNumber": "C3",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 4,
+            "time": "21:00",
+            "room": "Rum 4",
+            "seats": [
+              {
+                "seatNumber": "D1",
+                "booked": false
+              },
+              {
+                "seatNumber": "D2",
+                "booked": true
+              },
+              {
+                "seatNumber": "D3",
+                "booked": false
+              },
+              {
+                "seatNumber": "D4",
+                "booked": false
+              },
+              {
+                "seatNumber": "D5",
+                "booked": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "movieId": 1,
+        "title": "Borat",
+        "duration": "100 minuter",
+        "image": "https://m.media-amazon.com/images/M/MV5BMTk0MTQ3NDQ4Ml5BMl5BanBnXkFtZTcwOTQ3OTQzMw@@._V1_.jpg",
+        "description": "Borat är en satirisk mockumentärfilm från 2006, regisserad av Larry Charles och skapad av Sacha Baron Cohen, där huvudpersonen, den fiktiva Kazakstanska journalisten Borat Sagdiyev, reser genom USA och skapar komiska situationer med verkliga människor.",
+        "shows": [
+          {
+            "showId": 1,
+            "date": "2023-09-22",
+            "time": "15:00",
+            "room": "Rum 1",
+            "seats": [
+              {
+                "seatNumber": "A1",
+                "booked": true
+              },
+              {
+                "seatNumber": "A2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 2,
+            "time": "16:00",
+            "room": "Rum 2",
+            "seats": [
+              {
+                "seatNumber": "B1",
+                "booked": true
+              },
+              {
+                "seatNumber": "B2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 3,
+            "time": "18:00",
+            "room": "Rum 3",
+            "seats": [
+              {
+                "seatNumber": "C1",
+                "booked": true
+              },
+              {
+                "seatNumber": "C2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 4,
+            "time": "20:00",
+            "room": "Rum 4",
+            "seats": [
+              {
+                "seatNumber": "D1",
+                "booked": true
+              },
+              {
+                "seatNumber": "D2",
+                "booked": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "movieId": 2,
+        "title": "The intouchables",
+        "duration": "110 minuter",
+        "image": "https://m.media-amazon.com/images/S/pv-target-images/4b5dce93786807f80e8806a4d40d811a139f828cb3ed1ee45bff7821e52d5e20.jpg",
+        "description": "The Intouchables är en hjärtevärmande fransk film från 2011 om det oväntade vänskapen mellan en rullstolsbunden aristokrat och hans livsglada vårdare.",
+        "shows": [
+          {
+            "showId": 1,
+            "date": "2023-09-23",
+            "time": "11:00",
+            "room": "Rum 4",
+            "seats": [
+              {
+                "seatNumber": "C1",
+                "booked": true
+              },
+              {
+                "seatNumber": "C2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 2,
+            "time": "13:00",
+            "room": "Rum 4",
+            "seats": [
+              {
+                "seatNumber": "D1",
+                "booked": true
+              },
+              {
+                "seatNumber": "D2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 3,
+            "time": "15:00",
+            "room": "Rum 4",
+            "seats": [
+              {
+                "seatNumber": "B1",
+                "booked": true
+              },
+              {
+                "seatNumber": "B2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 4,
+            "time": "17:00",
+            "room": "Rum 4",
+            "seats": [
+              {
+                "seatNumber": "A1",
+                "booked": true
+              },
+              {
+                "seatNumber": "A2",
+                "booked": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "movieId": 4,
+        "title": "L'Avventura",
+        "duration": "150 minuter",
+        "image": "https://m.media-amazon.com/images/M/MV5BNmJlYTVjZTYtZDg1Yy00NzFiLWJmYzYtYTJhMjliY2I2ZTlhXkEyXkFqcGdeQXVyMjgyNjk3MzE@._V1_FMjpg_UX1000_.jpg",
+        "description": "L'Avventura är en italiensk filmklassiker från 1960, regisserad av Michelangelo Antonioni, som utforskar existentiella frågor och alienation genom en mystisk historia av försvinnande på en ö.",
+        "shows": [
+          {
+            "showId": 1,
+            "date": "2023-09-24",
+            "time": "10:00",
+            "room": "Rum 5",
+            "seats": [
+              {
+                "seatNumber": "A1",
+                "booked": false
+              },
+              {
+                "seatNumber": "A2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 2,
+            "time": "14:00",
+            "room": "Rum 6",
+            "seats": [
+              {
+                "seatNumber": "B1",
+                "booked": false
+              },
+              {
+                "seatNumber": "B2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 3,
+            "time": "17:00",
+            "room": "Rum 7",
+            "seats": [
+              {
+                "seatNumber": "C1",
+                "booked": false
+              },
+              {
+                "seatNumber": "C2",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 4,
+            "time": "20:00",
+            "room": "Rum 8",
+            "seats": [
+              {
+                "seatNumber": "D1",
+                "booked": false
+              },
+              {
+                "seatNumber": "D2",
+                "booked": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "movieId": 5,
+        "title": "Before Sunset",
+        "duration": "105 minuter",
+        "image": "https://m.media-amazon.com/images/M/MV5BNDI3NDI0Mzc4Nl5BMl5BanBnXkFtZTcwMzQ3MzYwNA@@._V1_.jpg",
+        "description": "Before Sunset är en romantisk dramafilm från 2004 som utforskar ödet och återföreningen mellan två tidigare älskande genom en gående samtal genom Paris gator.",
+        "shows": [
+          {
+            "showId": 1,
+            "date": "2023-09-25",
+            "time": "14:00",
+            "room": "Rum 9",
+            "seats": [
+              {
+                "seatNumber": "A1",
+                "booked": false
+              },
+              {
+                "seatNumber": "A2",
+                "booked": true
+              },
+              {
+                "seatNumber": "A3",
+                "booked": false
+              },
+              {
+                "seatNumber": "A5",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 2,
+            "time": "15:30",
+            "room": "Rum 3",
+            "seats": [
+              {
+                "seatNumber": "B1",
+                "booked": false
+              },
+              {
+                "seatNumber": "B2",
+                "booked": true
+              },
+              {
+                "seatNumber": "B3",
+                "booked": false
+              },
+              {
+                "seatNumber": "B5",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 3,
+            "time": "17:30",
+            "room": "Rum4",
+            "seats": [
+              {
+                "seatNumber": "C1",
+                "booked": true
+              },
+              {
+                "seatNumber": "C2",
+                "booked": true
+              },
+              {
+                "seatNumber": "C3",
+                "booked": true
+              },
+              {
+                "seatNumber": "C4",
+                "booked": false
+              },
+              {
+                "seatNumber": "C5",
+                "booked": false
+              }
+            ]
+          },
+          {
+            "showId": 4,
+            "time": "19:30",
+            "room": "Rum 6",
+            "seats": [
+              {
+                "seatNumber": "D1",
+                "booked": false
+              },
+              {
+                "seatNumber": "D2",
+                "booked": true
+              },
+              {
+                "seatNumber": "D3",
+                "booked": false
+              },
+              {
+                "seatNumber": "D4",
+                "booked": true
+              },
+              {
+                "seatNumber": "D5",
+                "booked": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+   }

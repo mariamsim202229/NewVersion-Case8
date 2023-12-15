@@ -7,7 +7,7 @@ export function Login({setUser, setToken}) {
 
     const submitForm = (e) => {
         e.preventDefault();
-        const endpoint = "http://localhost:4444/user/login";
+        const endpoint = "http://localhost:4000/user/login";
         const options = {
             method: "POST",
             mode: "cors",

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const db = path.normalize(path.resolve('./data/db.json'));
+const db = path.normalize(path.resolve('./data/users.json'));
 
 class User {
 
