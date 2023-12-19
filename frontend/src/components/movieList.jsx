@@ -5,18 +5,26 @@ import { useCinemaData } from './useCinemaData';
 
 //create a function for displaying the movies and for having a search function inside 
 //filtering the movies during the search by the user input based on title
-export default function MovieList() {
+export default function MovieList({ filteredMovies }) {
+
+
     const { movies, loading, error } = useCinemaData();
+    console.log ('Movies', movies);
+
     const [searchString, setSearchString] = useState('');
     if (loading) {
         return <p>Loading...</p>;
       }
-
       if (error) {
-        return <p>Error loading movies. Please try again later.</p>; // Display an error message
+        return (
+        <div>
+        <p>Error loading movies. Please try again later</p>
+        </div>
+        );
     }
-    const filteredMovies =movies &&  movies.filter(movie => movie.title.toLocaleLowerCase().includes(searchString));
 
+    filteredMovies = movies.filter(movie => movie.title.toLocaleLowerCase().includes(searchString));
+    console.log('movies', filteredMovies);
     return (
         //input type text for finding and filtering the movies that the user searches for
         // a div for displaying all the movies and their detailed information by mapping the array of movies from the cinema.json file
@@ -34,10 +42,12 @@ export default function MovieList() {
             <h1>Veckans top 5 filmer</h1>
 
             <div className='flexMovie'>
-                
-                { filteredMovies && filteredMovies.length > 0 ? (    filteredMovies.map(movie => (
+                { filteredMovies ? (
+                  filteredMovies.map((movie) => { 
+                    console.log('Rendering movie:', movie);
+                    return ( 
                     <div className='movieCard'
-                        key={movie.id} >
+                        key={movie.movieId} >
                         <Link to='/booking'>
                             {movie.title}
                         </Link>
@@ -48,13 +58,13 @@ export default function MovieList() {
                         <br />
                         <i>{movie.description}</i>
                         </div>
-                        ))
-          
-    
+                        );
+                         })
             ) : (
                 <p>no movies found</p>
-            ) }
-            </div>
+            )}
         </div>
-    );
-}
+        </div>
+        );
+        } 
+        

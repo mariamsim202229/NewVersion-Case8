@@ -5,6 +5,7 @@ import { useState } from 'react';
 function BookingForm({ show }) {
 
   const [isBookingOpen, setBookingOpen] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -21,6 +22,10 @@ function BookingForm({ show }) {
     setEmailError('');
   };
 
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+    }
+
   //the required email length and pattern must be met othewise an error message will be displayed
   //if the email meet the criteria for booking, then a confirmation message is displayed inside the show information field
 
@@ -29,7 +34,7 @@ function BookingForm({ show }) {
     if (email.length < 5 || !emailPattern.test(email)) {
       setEmailError('Ange en giltig e-postadress med minst 5 tecken.')
     } else {
-      const message = (`Boking bekräftad for mejladress: ${email}`);
+      const message = (`Boking bekräftad for namn och mejladress: ${name}, ${email}`);
       setConfirmationMessage(message);
       setBookingOpen(false);
       setEmail('');
@@ -53,6 +58,14 @@ function BookingForm({ show }) {
             pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
             title='Please enter a valid email adress'
           />
+        <input 
+        className='littleInput'
+        type="text"
+        placeholder='Skriv ditt namn'
+        value={name}
+        onChange={handleNameChange}
+        required
+        />
           {emailError && <div className='error-message'>{emailError}</div>}
           <button onClick={handleBookShow}>BEKRÄFTA</button>
         </div>

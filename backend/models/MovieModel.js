@@ -18,7 +18,6 @@ class Movie {
             return [];
         }
     }
-
     showAll() {
         const allMovies = this.readData();
         return allMovies;

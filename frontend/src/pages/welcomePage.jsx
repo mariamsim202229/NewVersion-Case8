@@ -7,7 +7,7 @@ import { useCinemaData } from '../components/useCinemaData';
 
 //creating a function for the route WelcomePage, importing all the components
 export default function WelcomePage() {
-  const { cinemaData, loading, error } = useCinemaData();
+  const { cinemaData, movies, loading, error } = useCinemaData();
 
   // check if loading, if true then we should display a loading message
   if (loading) {
@@ -24,7 +24,7 @@ export default function WelcomePage() {
     <div className='cinemaApp'>
       <Navbar />
       <Cinema cinemaData={cinemaData} />
-      <MovieList />
+      <MovieList filteredMovies={movies} />
       <br />
       <br />
       <br />
