@@ -4,7 +4,7 @@
         "description": "Välkommen till vår biosalong! Idag vill vi ta er med på en spännande resa in i vår biosalong, en plats där underhållning, gemenskap och magi möts. Vår biosalong är mer än bara en plats där du ser på film, det är en destination där du kan koppla av, känna spänning och skapa minnen.Vi är stolta över att välkomna er till vår biosalong och ser fram emot att dela fantastiska filmögonblick med er. Vi hoppas att ni kommer att uppskatta vår omsorgsfullt utformade miljö, högkvalitativa teknik och hjärtliga service. Så kom, sätt dig till rätta och låt oss tillsammans skapa minnen som varar livet ut i vårt tempel för film och underhållning.",
     "movies": [
       {
-        "movieId": 0,
+        "movieId": 1,
         "title": "Titanic",
         "duration": "200 minuter",
         "image": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/titanic-double-poster-andrea-gatti.jpg",
@@ -102,7 +102,7 @@
         ]
       },
       {
-        "movieId": 1,
+        "movieId": 2,
         "title": "Borat",
         "duration": "100 minuter",
         "image": "https://m.media-amazon.com/images/M/MV5BMTk0MTQ3NDQ4Ml5BMl5BanBnXkFtZTcwOTQ3OTQzMw@@._V1_.jpg",
@@ -172,7 +172,7 @@
         ]
       },
       {
-        "movieId": 2,
+        "movieId": 3,
         "title": "The intouchables",
         "duration": "110 minuter",
         "image": "https://m.media-amazon.com/images/S/pv-target-images/4b5dce93786807f80e8806a4d40d811a139f828cb3ed1ee45bff7821e52d5e20.jpg",

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 export function Login({setUser, setToken}) {
 
     const [name, setName] = useState("");
+    const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
 
     const submitForm = (e) => {
@@ -12,27 +13,28 @@ export function Login({setUser, setToken}) {
             method: "POST",
             mode: "cors",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: name, password: password })
+            body: JSON.stringify({ name: name, password: password, userId: "" })
         }
         console.log("options", options);
-        asynqRequest(endpoint, options);
+        asyncRequest(endpoint, options);
     }
 
-    const asynqRequest = (endpoint, options) => {
+    const asyncRequest = (endpoint, options) => {
         fetch(endpoint, options)
         .then(response => response.json())
         .then((data) => {
             console.log("data", data);
-            if (data.user.hasOwnProperty("id")) {
+            if (data && data.user && data.user.hasOwnProperty("userId")) {
                 setUser(data.user);
-                setToken(data.token);    
+                setToken(data.token);   
+                setUserId(data.userId);
             }
         })
     }
 
     useEffect(() => {
-        console.log("name:", name, "password:", password);
-    }, [name, password]);
+        console.log("name:", name, "password:", password, "userId:", userId);
+    }, [name, password, userId]);
 
     return (
         <>

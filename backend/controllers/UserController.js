@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { secretKey, authenticateWebToken } from '../utils/authenticate.js';
 
-import Users from '../models/user-model.js';
+import Users from '../models/UserModel.js';
 const users = new Users();
 
 function handleGetAll(req, res) {

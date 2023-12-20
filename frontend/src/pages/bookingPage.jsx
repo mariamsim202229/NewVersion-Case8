@@ -1,12 +1,15 @@
 import React from 'react';
 import Shows from '../components/movieShows';
-import Navbar from '../components/navBar';
+// import Navbar from '../components/navBar';
 import Footer from '../components/footer';
 import { useCinemaData } from '../components/useCinemaData';
+// import { Api } from '../components/Api';
 
 //create a function for the route bookingpage and include all the components
 function BookingPage() {
     const { loading, error } = useCinemaData();
+    // const [user, setUser] = useState({});
+    // const [token, setToken] = useState("");
     // check if loading, if true then we should display a loading message
     if (loading) {
         return <div>Loading...</div>;
@@ -20,8 +23,9 @@ function BookingPage() {
     return (
         // a page/route for booking the shows, includes all the components 
         <div className='bookingApp'>
-            <Navbar />
+            {/* <Navbar /> */}
             <Shows />
+          
             <br />
             <br />
             <br />

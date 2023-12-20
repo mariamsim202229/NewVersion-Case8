@@ -1,7 +1,7 @@
 import React from 'react';
 import Cinema from '../components/cinema';
 import MovieList from '../components/movieList';
-import Navbar from '../components/navBar';
+// import Navbar from '../components/navBar';
 import Footer from '../components/footer';
 import { useCinemaData } from '../components/useCinemaData';
 
@@ -22,7 +22,7 @@ export default function WelcomePage() {
   //the homepage component and its components imported in the page
   return (
     <div className='cinemaApp'>
-      <Navbar />
+      {/* <Navbar /> */}
       <Cinema cinemaData={cinemaData} />
       <MovieList filteredMovies={movies} />
       <br />

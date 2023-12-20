@@ -9,7 +9,7 @@ export default function MovieList({ filteredMovies }) {
 
 
     const { movies, loading, error } = useCinemaData();
-    console.log ('Movies', movies);
+    console.log ('movies', movies);
 
     const [searchString, setSearchString] = useState('');
     if (loading) {

@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 
-import userRouter from './routes/user-router.js';
+import userRouter from './routes/UserRoutes.js';
 import movieRouter from './routes/MovieRoutes.js';
+import bookingRouter from './routes/BookingRoutes.js';
 
 const PORT = 4000;
 const app = express();
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.use(movieRouter);
 app.use(userRouter);
+app.use(bookingRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 const userRouter = Router();
 
-import { handleGetAll, handleLogin } from '../controllers/user-controller.js';
+import { handleGetAll, handleLogin } from '../controllers/UserController.js';
 import { authenticateWebToken } from '../utils/authenticate.js';
 
 userRouter.get('/users', authenticateWebToken, handleGetAll);
