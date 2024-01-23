@@ -5,7 +5,7 @@ let requestCounter = 0;
 
 function handleShowAll(req, res) {
     console.log("Request for ShowAll, nr", requestCounter++);
-res.send(movies.showAll());
+    res.send(movies.showAll());
 }
 
 function handleShowOneById(req, res) {
@@ -21,5 +21,4 @@ function handleShowOneById(req, res) {
     return res.send(foundMovie);
 }
 
-
-export {handleShowAll, handleShowOneById}
+export { handleShowAll, handleShowOneById }

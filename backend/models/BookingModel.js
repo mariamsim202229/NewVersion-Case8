@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 
 const bookingDb = path.normalize(path.resolve('./data/bookings.json'));
-// import {getDatabase, setDatabase} from '../utils/utils.js';
 
 class Booking {
 

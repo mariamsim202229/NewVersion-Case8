@@ -1,18 +1,14 @@
 import Bookings from '../models/BookingModel.js';
 const bookings = new Bookings();
-// console.log () ;
 let requestCounter = 0;
 
 function handleShowAll(req, res) {
-    // const allBookings = bookings.showAll();
-    // res.json(allBookings || []);
     console.log("Request for ShowAll, nr", requestCounter++);
     res.json(bookings.showAll());
 }
 
 function handleShowBookingsByUserId(req, res) {
     const { userId } = req.params;
-
     console.log(`Request for showBookingsByUserId, with id ${userId}, nr`, requestCounter++);
     const foundBooking = bookings.showBookingsByUserId(Number(userId));
 
@@ -35,8 +31,8 @@ function handleSaveBooking(req, res) {
         res.status(400).send("Missing required fields");
         return;
     }
-    // create a new booking object
 
+    // create a new booking object
     const newBooking = {
         movieId: movieId,
         userId: userId,
@@ -50,6 +46,5 @@ function handleSaveBooking(req, res) {
     console.log("newBooking", newBooking);
     // Respond with the saved booking
     res.status(201).json(newBooking);
-
 }
 export { handleShowAll, handleShowBookingsByUserId, handleSaveBooking }

@@ -7,9 +7,9 @@ class User {
 
     constructor() {
     }
-    
+
     readData() {
-        const data = fs.readFileSync(userDb, {encoding: 'utf-8'}); 
+        const data = fs.readFileSync(userDb, { encoding: 'utf-8' });
         if (!data) {
             return [];
         } else {
@@ -50,7 +50,7 @@ class User {
         }
         users.push(newUser);
         this.saveData(users);
-}
+    }
 }
 
 export default User;

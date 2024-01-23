@@ -2,11 +2,11 @@ import fs from 'fs';
 import path from 'path';
 
 const movieDb = path.normalize(path.resolve('./data/movies.json'));
-// import {getDatabase, setDatabase} from '../utils/utils.js';
+
 
 class Movie {
 
-    constructor() {}
+    constructor() { }
 
     readData() {
         try {
@@ -25,7 +25,7 @@ class Movie {
 
     showOneById(movieId) {
         const allMovies = this.readData();
-        console.log ("allMovies", allMovies);
+        console.log("allMovies", allMovies);
         const foundMovie = allMovies.movies.find(movie => movie.movieId === movieId);
         return foundMovie;
     }
@@ -33,4 +33,3 @@ class Movie {
 
 export default Movie;
 
-   
