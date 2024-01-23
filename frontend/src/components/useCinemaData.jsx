@@ -22,8 +22,8 @@ export function useCinemaData() {
                 }
                 const data = await response.json();
                 setCinemaData(data);
-                setMovies(data?.cinema?.movies || []);
-                const allShows = data?.cinema?.movies.flatMap((movie) => movie.shows || []);
+                setMovies(data?.movies || []);
+                const allShows = data?.movies.flatMap((movie) => movie.shows || []);
                 setShows(allShows);
                 setLoading(false);
             } catch (err) {

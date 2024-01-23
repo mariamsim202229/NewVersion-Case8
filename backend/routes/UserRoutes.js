@@ -1,10 +1,12 @@
 import { Router } from 'express';
 const userRouter = Router();
 
-import { handleGetAll, handleLogin } from '../controllers/UserController.js';
+import { handleGetAll, handleLogin, handleSaveNewUser } from '../controllers/UserController.js';
 import { authenticateWebToken } from '../utils/authenticate.js';
 
-userRouter.get('/users', authenticateWebToken, handleGetAll);
-userRouter.post('/user/login', handleLogin);
+userRouter.get('/users', handleGetAll);
+userRouter.post('/user/login', authenticateWebToken, handleLogin);
+userRouter.post('/user/register', handleSaveNewUser);
 
 export default userRouter;
+

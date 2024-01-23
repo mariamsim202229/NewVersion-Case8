@@ -10,7 +10,7 @@ function authenticateWebToken(req, res, next) {
         if (err) return res.status(403).json({result: 'Invalid token'});
         req.user = user;
         next();
-    });
+    }); 
 }
 
 export { secretKey, authenticateWebToken }

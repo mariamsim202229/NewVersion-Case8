@@ -1,5 +1,5 @@
 import React from 'react';
-import Cinema from '../components/cinema';
+// import Cinema from '../components/cinema';
 import MovieList from '../components/movieList';
 // import Navbar from '../components/navBar';
 import Footer from '../components/footer';
@@ -7,7 +7,7 @@ import { useCinemaData } from '../components/useCinemaData';
 
 //creating a function for the route WelcomePage, importing all the components
 export default function WelcomePage() {
-  const { cinemaData, movies, loading, error } = useCinemaData();
+  const {movies, loading, error } = useCinemaData();
 
   // check if loading, if true then we should display a loading message
   if (loading) {
@@ -23,7 +23,7 @@ export default function WelcomePage() {
   return (
     <div className='cinemaApp'>
       {/* <Navbar /> */}
-      <Cinema cinemaData={cinemaData} />
+      {/* <Cinema cinemaData={cinemaData} /> */}
       <MovieList filteredMovies={movies} />
       <br />
       <br />

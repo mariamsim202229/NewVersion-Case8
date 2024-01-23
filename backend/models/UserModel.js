@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const db = path.normalize(path.resolve('./data/users.json'));
+const userDb = path.normalize(path.resolve('./data/users.json'));
 
 class User {
 
@@ -9,7 +9,7 @@ class User {
     }
     
     readData() {
-        const data = fs.readFileSync(db, {encoding: 'utf-8'}); 
+        const data = fs.readFileSync(userDb, {encoding: 'utf-8'}); 
         if (!data) {
             return [];
         } else {
@@ -18,7 +18,7 @@ class User {
     }
 
     saveData(data) {
-        return fs.writeFileSync(db, JSON.stringify(data));
+        return fs.writeFileSync(userDb, JSON.stringify(data));
     }
 
     getAll() {
@@ -26,7 +26,7 @@ class User {
         if (!users) {
             return [];
         }
-        return users.map(user => ({name:user.name, id: user.id, loginCount: user.loginCount}));
+        return users;
     }
 
     login(name, password) {
@@ -41,6 +41,16 @@ class User {
         this.saveData(users);
         return obj;
     }
+    saveNewUser(newUser) {
+        let users = this.readData();
+        console.log(users);
+
+        if (!Array.isArray(users)) {
+            users = [];
+        }
+        users.push(newUser);
+        this.saveData(users);
+}
 }
 
 export default User;

@@ -6,7 +6,7 @@ const bookingDb = path.normalize(path.resolve('./data/bookings.json'));
 
 class Booking {
 
-    constructor() { }
+    constructor() {}
 
     readData() {
         try {
@@ -20,7 +20,7 @@ class Booking {
     }
 
     saveData(data) {
-        return fs.writeFileSync(db, JSON.stringify(data));
+        return fs.writeFileSync(bookingDb, JSON.stringify(data));
     }
     showAll() {
         const allBookings = this.readData();
@@ -29,13 +29,18 @@ class Booking {
 
     showBookingsByUserId(userId) {
         const allBookings = this.readData();
-        const foundBooking = allBookings.bookings.find(bookings => bookings.userId === userId);
+        const foundBooking = allBookings.find(booking => booking.userId === userId);
         return foundBooking;
     }
 
     saveBooking(newBooking) {
-        const allBookings = this.readData();
-        allBookings.bookings.push(newBooking);
+        let allBookings = this.readData();
+        console.log(allBookings);
+
+        if (!Array.isArray(allBookings)) {
+            allBookings = [];
+        }
+        allBookings.push(newBooking);
         this.saveData(allBookings);
     }
 }

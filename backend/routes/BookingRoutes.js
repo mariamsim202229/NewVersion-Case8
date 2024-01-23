@@ -5,8 +5,9 @@ import { handleShowAll, handleShowBookingsByUserId, handleSaveBooking } from '..
 const bookingRouter = Router();
 // Define routes regarding Poems
 bookingRouter.get("/bookings", handleShowAll);
-bookingRouter.post("/MyBookings", handleSaveBooking );
-bookingRouter.get("/booking/:userId", handleShowBookingsByUserId);
-// bookingRouter.post("/newBooking/:userId", handleSaveBooking );
+// bookingRouter.post("/NewBooking", handleSaveBooking );
+bookingRouter.get("/bookings/:userId", handleShowBookingsByUserId);
+bookingRouter.post("/saveBooking", handleSaveBooking );
+
 
 export default bookingRouter;

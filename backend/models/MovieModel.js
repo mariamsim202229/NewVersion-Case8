@@ -25,7 +25,8 @@ class Movie {
 
     showOneById(movieId) {
         const allMovies = this.readData();
-        const foundMovie = allMovies.movies.find(movies => movies.movieId === movieId);
+        console.log ("allMovies", allMovies);
+        const foundMovie = allMovies.movies.find(movie => movie.movieId === movieId);
         return foundMovie;
     }
 }

@@ -1,7 +1,4 @@
 {
-    "cinema": {
-        "name": "Välkommen till BioPalatset",
-        "description": "Välkommen till vår biosalong! Idag vill vi ta er med på en spännande resa in i vår biosalong, en plats där underhållning, gemenskap och magi möts. Vår biosalong är mer än bara en plats där du ser på film, det är en destination där du kan koppla av, känna spänning och skapa minnen.Vi är stolta över att välkomna er till vår biosalong och ser fram emot att dela fantastiska filmögonblick med er. Vi hoppas att ni kommer att uppskatta vår omsorgsfullt utformade miljö, högkvalitativa teknik och hjärtliga service. Så kom, sätt dig till rätta och låt oss tillsammans skapa minnen som varar livet ut i vårt tempel för film och underhållning.",
     "movies": [
       {
         "movieId": 1,
@@ -423,4 +420,4 @@
       }
     ]
   }
-   }
+   
