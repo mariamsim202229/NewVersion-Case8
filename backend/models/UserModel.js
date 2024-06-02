@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
+import Bookings from './BookingModel.js';
+const bookings = new Bookings;
+
 const userDb = path.normalize(path.resolve('./data/users.json'));
 
 class User {
@@ -21,36 +24,42 @@ class User {
         return fs.writeFileSync(userDb, JSON.stringify(data));
     }
 
-    getAll() {
+    authenticate(username, password) {
         const users = this.readData();
-        if (!users) {
-            return [];
+        // check if username exists
+        const foundUser = users.find(user => user.username === username);
+
+        if (!foundUser) {
+            return false;
         }
-        return users;
+
+        const isMatching = foundUser.password === password;
+
+        return isMatching;
     }
 
-    login(name, password) {
-        const users = this.readData();
-        let obj = {};
-        users.forEach(user => {
-            if (user.name === name && user.password === password) {
-                user.loginCount += 1;
-                obj = user;
-            }
-        });
-        this.saveData(users);
-        return obj;
+    getAllUsers() {
+        const allUsers = this.readData();
+        // protect the password
+        allUsers.forEach(user => delete user.password); 
+        return allUsers;
     }
-    saveNewUser(newUser) {
-        let users = this.readData();
-        console.log(users);
 
-        if (!Array.isArray(users)) {
-            users = [];
-        }
-        users.push(newUser);
-        this.saveData(users);
+    getUserByUsername(username) {
+        const allUsers = this.readData();
+    
+        const foundUser = allUsers.find(user => user.username === username);
+    
+        // protect password
+        delete foundUser.password;
+    
+        // Get all bookings associated with user
+        const allBookings = bookings.showAll();
+        const bookingsByUser = allBookings.filter(bookings => bookings.name === foundUser.username);
+    
+        foundUser.bookings = bookingsByUser;
+    
+        return foundUser;
     }
 }
-
 export default User;

@@ -1,50 +1,29 @@
 import Bookings from '../models/BookingModel.js';
 const bookings = new Bookings();
+
+import { userSessions } from './UserController.js';
+
 let requestCounter = 0;
 
-function handleShowAll(req, res) {
+function handleShowAllBookings(req, res) {
     console.log("Request for ShowAll, nr", requestCounter++);
-    res.json(bookings.showAll());
+    res.json(bookings.showAllBookings());
 }
 
-function handleShowBookingsByUserId(req, res) {
-    const { userId } = req.params;
-    console.log(`Request for showBookingsByUserId, with id ${userId}, nr`, requestCounter++);
-    const foundBooking = bookings.showBookingsByUserId(Number(userId));
-
-    if (!foundBooking) {
-        res.status(204).send("No content");
-    }
-    return res.send(foundBooking);
-}
-
-function handleSaveBooking(req, res) {
-
-    // const { userId } = req.params;
-    // Extract other necessary data from the request body
-    const { movieId, userId, showId, name, email, seatNumber } = req.body;
-
-    console.log(`Request for saveBooking, with id ${userId}, nr`, requestCounter++);
-
-    // Validate the incoming data
-    if (!movieId || !showId || !name || !email || !seatNumber) {
-        res.status(400).send("Missing required fields");
-        return;
+function handleCreateBooking(req, res) {
+    console.log(`Request for create, with newBooking ${JSON.stringify(req.body)}, nr`, requestCounter++);
+    if (!Object.values(userSessions).includes(req.query.sessionKey)) {
+        return res.status(401).send("Not authorized");
     }
 
-    // create a new booking object
-    const newBooking = {
-        movieId: movieId,
-        userId: userId,
-        showId: showId,
-        name: name,
-        email: email,
-        seatNumber: seatNumber,
-    };
+    const newBooking = req.body;
 
-    bookings.saveBooking(newBooking);
-    console.log("newBooking", newBooking);
-    // Respond with the saved booking
-    res.status(201).json(newBooking);
+    if (!newBooking.username || !newBooking.email) {
+        return res.status(501).send("Request did not succeed. Check your request body");
+    }
+
+    const createdBooking = bookings.create(newBooking);
+    return res.send(createdBooking);
 }
-export { handleShowAll, handleShowBookingsByUserId, handleSaveBooking }
+
+export { handleShowAllBookings, handleCreateBooking }

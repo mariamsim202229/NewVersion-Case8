@@ -21,26 +21,31 @@ class Booking {
     saveData(data) {
         return fs.writeFileSync(bookingDb, JSON.stringify(data));
     }
-    showAll() {
+
+    showAllBookings() {
+        console.log(showAllBookings()); 
         const allBookings = this.readData();
         return allBookings;
     }
 
-    showBookingsByUserId(userId) {
-        const allBookings = this.readData();
-        const foundBooking = allBookings.find(booking => booking.userId === userId);
-        return foundBooking;
-    }
+    createBooking(newBooking) {
 
-    saveBooking(newBooking) {
-        let allBookings = this.readData();
-        console.log(allBookings);
-
-        if (!Array.isArray(allBookings)) {
-            allBookings = [];
+        //h
+        if (!newBooking.username || !newBooking.email ) {
+            return false;
         }
-        allBookings.push(newBooking);
-        this.saveData(allBookings);
+
+        // Read in the database
+        const allBookings = this.readData();
+         console.log(allBookings);
+        // Add booking to array
+        const bookingToAdd = { username: newBooking.username, email: newBooking.email };
+        allBookings.push(bookingToAdd);
+    
+        // Set array as new database
+         this.saveData(allBookings);
+    
+        return bookingToAdd;
     }
 }
 export default Booking;

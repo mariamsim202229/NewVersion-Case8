@@ -1,51 +1,41 @@
-import jwt from 'jsonwebtoken';
-import { secretKey, authenticateWebToken } from '../utils/authenticate.js';
+import crypto from 'crypto';
 
 import Users from '../models/UserModel.js';
 const users = new Users();
 
-function handleGetAll(req, res) {
-    res.json(users.getAll());
-}
+const userSessions = {};
 
 function handleLogin(req, res) {
-    const name = req.body.name;
-    const password = req.body.password;
-    const user = users.login(name, password);
+    const { username, password } = req.body;
+    const isAuthenticated = users.authenticate(username, password);
 
-    if (user.hasOwnProperty("userId")) {
-        const token = jwt.sign({ user }, secretKey, { expiresIn: '1h' });
-        res.json({ user: user, userId: userId, token: token });
-    } else {
-        res.json({})
+    if (!isAuthenticated) {
+        console.log("Signin failed");
+        return res.status(401).send("Not authenticated");
     }
+
+    // Register a new session
+    const sessionKey = crypto.randomBytes(20).toString('base64');
+    userSessions[username] = sessionKey;
+    res.send({ sessionKey });
+}
+function handleGetAllUsers(req, res) {
+    res.json(users.getAllUsers());
 }
 
-function handleSaveNewUser(req, res) {
-
-    // const { userId } = req.params;
-    // Extract other necessary data from the request body
-    const { name, password, userId } = req.body;
-
-    console.log(`Request for saveUsers, with id ${userId}, nr`);
-
-    // Validate the incoming data
-    if (!name || !password || !userId) {
-        res.status(400).send("Missing required fields");
-        return;
+function handleGetUserByUsername(req, res) {
+    if (!Object.values(userSessions).includes(req.query.sessionKey)) {
+        return res.status(401).send("Not authorized");
     }
-    // create a new booking object
 
-    const newUser = {
-        name: name,
-        password: password,
-        userId: userId,
-    };
+    const { username } = req.params;
 
-    users.saveNewUser(newUser);
+    const foundUser = users.getUserByUsername(username);
 
-    // Respond with the saved booking
-    res.status(201).json(newUser);
-
+    if (!foundUser) {
+        return res.status(404).send("User Not found");
+    }
+    return res.send(foundUser);
 }
-export { handleGetAll, handleLogin, handleSaveNewUser }
+
+export { userSessions, handleGetAllUsers, handleGetUserByUsername, handleLogin, }

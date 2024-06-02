@@ -2,8 +2,6 @@ import fs from 'fs';
 import path from 'path';
 
 const movieDb = path.normalize(path.resolve('./data/movies.json'));
-
-
 class Movie {
 
     constructor() { }
