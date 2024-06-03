@@ -3,6 +3,7 @@ import path from 'path';
 
 import Bookings from './BookingModel.js';
 const bookings = new Bookings();
+// import { userSessions } from '../controllers/UserController.js';
 
 const userDb = path.normalize(path.resolve('./data/users.json'));
 
@@ -61,5 +62,6 @@ class User {
     
         return foundUser;
     }
+
 }
 export default User;
