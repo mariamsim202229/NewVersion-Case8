@@ -18,11 +18,11 @@ function handleCreateBooking(req, res) {
 
     const newBooking = req.body;
 
-    if (!newBooking.username || !newBooking.email) {
+    if (!newBooking.movieId || !newBooking.showId || !newBooking.seatNumber||!newBooking.username || !newBooking.email) {
         return res.status(501).send("Request did not succeed. Check your request body");
     }
 
-    const createdBooking = bookings.create(newBooking);
+    const createdBooking = bookings.createBooking(newBooking);
     return res.send(createdBooking);
 }
 

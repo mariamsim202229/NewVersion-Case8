@@ -38,4 +38,4 @@ function handleGetUserByUsername(req, res) {
     return res.send(foundUser);
 }
 
-export { userSessions, handleGetAllUsers, handleGetUserByUsername, handleLogin, }
+export { userSessions, handleGetAllUsers, handleGetUserByUsername, handleLogin }

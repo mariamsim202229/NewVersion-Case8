@@ -23,15 +23,14 @@ class Booking {
     }
 
     showAllBookings() {
-        console.log(showAllBookings()); 
+        // console.log(showAllBookings()); 
         const allBookings = this.readData();
         return allBookings;
     }
 
     createBooking(newBooking) {
 
-        //h
-        if (!newBooking.username || !newBooking.email ) {
+        if (!newBooking.movieId || !newBooking.showId || !newBooking.seatNumber||!newBooking.username || !newBooking.email) {
             return false;
         }
 
@@ -39,7 +38,7 @@ class Booking {
         const allBookings = this.readData();
          console.log(allBookings);
         // Add booking to array
-        const bookingToAdd = { username: newBooking.username, email: newBooking.email };
+        const bookingToAdd = { movieId: newBooking.movieId, showId: newBooking.showId, seatNumber: newBooking.seatNumber, username: newBooking.username, email: newBooking.email };
         allBookings.push(bookingToAdd);
     
         // Set array as new database

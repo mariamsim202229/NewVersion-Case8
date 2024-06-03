@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import Bookings from './BookingModel.js';
-const bookings = new Bookings;
+const bookings = new Bookings();
 
 const userDb = path.normalize(path.resolve('./data/users.json'));
 
@@ -54,7 +54,7 @@ class User {
         delete foundUser.password;
     
         // Get all bookings associated with user
-        const allBookings = bookings.showAll();
+        const allBookings = bookings.showAllBookings();
         const bookingsByUser = allBookings.filter(bookings => bookings.name === foundUser.username);
     
         foundUser.bookings = bookingsByUser;
