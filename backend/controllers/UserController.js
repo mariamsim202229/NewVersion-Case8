@@ -37,14 +37,12 @@ function handleGetUserByUsername(req, res) {
 }
 
 function handleDeleteUserSession(req, res) {
-
     const { username } = req.params;
     if (!userSessions.hasOwnProperty(username)) {
         return res.status(401).send("Not authorized");
     }
     delete userSessions[username];
     return res.send("Session deleted successfully");
-
 }
 
 export { userSessions, handleGetAllUsers, handleGetUserByUsername, handleLogin, handleDeleteUserSession }

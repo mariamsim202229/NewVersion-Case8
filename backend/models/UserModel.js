@@ -56,7 +56,7 @@ class User {
     
         // Get all bookings associated with user
         const allBookings = bookings.showAllBookings();
-        const bookingsByUser = allBookings.filter(bookings => bookings.name === foundUser.username);
+        const bookingsByUser = allBookings.filter(bookings => bookings.username === foundUser.username);
     
         foundUser.bookings = bookingsByUser;
     
